@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== scopes ==========");
+    println!("\x1b[0;32m ========== scopes ========== \x1b[0m\n");
 
     // scopes
     let coffee_price = 2.35;

@@ -1,7 +1,7 @@
 const SALES_TAX: f32 = 6.789;
 
 fn main() {
-    println!("========== constants ==========");
+    println!("\x1b[0;32m========== constants ========== \x1b[0m\n");
 
     // constants
     const INCOME_TAX: f32 = 3.45;

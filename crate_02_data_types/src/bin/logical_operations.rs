@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== logical operations ==========\n");
+    println!("\x1b[0;32m ========== logical operations ========== \x1b[0m\n");
 
     // booleans
     let mut flag_ready: bool = true;

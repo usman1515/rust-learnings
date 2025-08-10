@@ -2,7 +2,7 @@
 type Km = f32;
 
 fn main() {
-    println!("========== type_aliases ==========");
+    println!("\x1b[0;32m ========== type_aliases ========== \x1b[0m\n");
 
     let marathon: Km = 42.195;
     let half_marathon: Km = marathon / 2.0;

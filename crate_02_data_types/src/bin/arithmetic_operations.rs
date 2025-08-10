@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== arithmetic operations ==========\n");
+    println!("\x1b[0;32m ========== arithmetic operations ========== \x1b[0m\n");
 
     let num1: f32 = 20.0;
     let num2: f32 = 30.0;

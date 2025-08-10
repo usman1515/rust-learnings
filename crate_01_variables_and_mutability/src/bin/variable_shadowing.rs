@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== variable_shadowing ==========");
+    println!("\x1b[0;32m ========== variable_shadowing ========== \x1b[0m\n");
 
     // variable shadowing
     let grams_of_protein = "100.345";

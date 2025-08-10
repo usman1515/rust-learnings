@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== strings and raw strings ==========\n");
+    println!("\x1b[0;32m ========== strings and raw strings ========== \x1b[0m\n");
 
     println!("this is a newline char: \\n");
     println!("this is a tabline char: \t some text");

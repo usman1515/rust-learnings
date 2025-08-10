@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== methods ==========\n");
+    println!("\x1b[0;32m ========== methods ========== \x1b[0m\n");
 
     let num1: i32 = -17;
     println!("num1: {}", num1.abs());

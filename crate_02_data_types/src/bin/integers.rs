@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== integers ==========\n");
+    println!("\x1b[0;32m ========== integers ========== \x1b[0m\n");
 
     let bit8: i8 =      100;
     let bit16: i16 =    0x0fff;

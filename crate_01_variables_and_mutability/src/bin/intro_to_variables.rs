@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== intro_to_variables ==========");
+    println!("\x1b[0;32m ========== intro_to_variables ========== \x1b[0m\n");
     let apples = 20;
     let oranges = 30;
 

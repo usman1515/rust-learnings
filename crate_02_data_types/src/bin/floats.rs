@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== floats ==========\n");
+    println!("\x1b[0;32m ========== floats ========== \x1b[0m\n");
 
     let pi: f32 = 22.0 / 7.0;
     println!("Pi (32 bit): {}", pi);

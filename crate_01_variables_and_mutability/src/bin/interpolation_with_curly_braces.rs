@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== interpolation_with_curly_braces ==========");
+    println!("\x1b[0;32m ========== interpolation_with_curly_braces ========== \x1b[0m\n");
 
     let apples = 20;
     let oranges = 30;

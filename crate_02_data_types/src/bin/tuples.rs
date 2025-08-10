@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== tuples ==========\n");
+    println!("\x1b[0;32m ========== tuples ========== \x1b[0m\n");
 
     let employee1 = ("Andrea", 60, "Secretary");
     let employee2: (&str, u32, &str) = ("Dirk", 65, "Professor");

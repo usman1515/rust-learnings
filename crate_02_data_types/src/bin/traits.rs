@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== traits ==========\n");
+    println!("\x1b[0;32m ========== traits ========== \x1b[0m\n");
 
     // display trait
     println!("{}", 5);

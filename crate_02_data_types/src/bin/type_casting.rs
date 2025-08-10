@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== type casting ==========\n");
+    println!("\x1b[0;32m ========== type casting ========== \x1b[0m\n");
 
     let distance_u32: u32 = 250;
     println!("Distance (32 bit): {}", distance_u32);

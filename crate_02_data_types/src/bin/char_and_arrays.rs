@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== characters and arrays ==========\n");
+    println!("\x1b[0;32m ========== characters and arrays ========== \x1b[0m\n");
 
     let first_char = 'a';       // single quotes means its a char
     let _second_char = "a";     // double quotes makes it a string

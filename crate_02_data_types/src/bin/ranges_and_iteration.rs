@@ -1,5 +1,5 @@
 fn main() {
-    println!("========== ranges and range iteration ==========\n");
+    println!("\x1b[0;32m ========== ranges and range iteration ========== \x1b[0m\n");
 
     // let month: Range<u32> = 1..12;
     let month = 1..12;      // doesnt include 12
