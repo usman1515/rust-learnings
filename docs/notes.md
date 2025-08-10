@@ -174,4 +174,14 @@ systems. Supports various symbols and emojis as well.
 - Ranges are exclusive by default.
     - Goes up to max number but doesnt include it.
 
+## 72. Functions
+- Sequence of steps to be executed in order.
+- We can create and invoke custom functions.
+- A parameter is a name for an expected input to a function.
+- An argument is the concrete value passed in for a parameter when a function is invoked.
+    - Rust only support positional arguments in function calls.
+- A return value is the output of a function.
+- By default a function will return a value in the last line which is called implicit return.
+- A unit is an empty tuple without values.
+    - It's the default return type of an empty function.
 
