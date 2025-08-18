@@ -14,7 +14,7 @@
 ├── src/            -- all project code files here
 │   └── main.rs
 ├── target/         -- executables are generated here
-└── Cargo.toml      -- stores metadata and info about the rust project.
+├── Cargo.toml      -- stores metadata and info about the rust project.
 └── Cargo.lock      -- automatically generated and updated. keep in version control.
 ```
 
@@ -148,7 +148,7 @@ systems. Supports various symbols and emojis as well.
 - An array is a fixed size collection of a homogenous datatype.
 
 ## 62. Traits
-- A trait is a contract that requires that a type support one or more methods.
+- A trait is a contract that requ:wqires that a type support one or more methods.
 - Traits establish consistency between types.
     - Methods that represent the same behavior can have the same name across different types.
     - A type **implements** a trait.
@@ -185,3 +185,50 @@ systems. Supports various symbols and emojis as well.
 - A unit is an empty tuple without values.
     - It's the default return type of an empty function.
 
+<!-- INFO: latex template done till this point -->
+
+## 82. `if` Statement
+- Control flow refers to how a program will execute.
+- Conditions must return booleans inorder to be processed properly.
+
+## 83. `else if` Statement
+- If we have multiple `if` statement then all are checked since they are all independent checks.
+    - Each `if` statement is an independent construct.
+- If we have `if else` then we look for the 1st if and then compute the `else`.
+
+## 84. `else` Statement
+- Used for all unknown scenarios.
+- Ternerary operators **DONT EXIST** in rust.
+
+## 86. `match` Statement
+- Works like a `case` statement.
+- Allows us to react to multiple possible variants of a value.
+- A pattern or arm is one possible option to compare the match value against.
+- `_` is the default case.
+- Refactor code means to restructure or improve existing code without altering the design.
+- Can also add multiple conditions in `match` statement.
+- We sometimes need to add the macro `_ <= unreachable!(),` for `match` statements where all
+
+## 89. The `loop` and `break` keywords
+- To iterate means to repeat something.
+- you can use a `loop` statement and add an `if` in to `break` the loop. Otherwise it will run
+indefinately.
+
+## 90. The `continue` keyword
+- Forces a loop to move to the next iteration.
+    - When it sees the `continue` keywords it wont execute anything further and will move back to
+    the start of the loop.
+
+## 91. The `while` loop
+- A `while` loop keeps iterating as long as a certain condition is met.
+
+## 92. Recursion
+- When a function calls itself.
+- **Base case** is a condition that stops the recursion.
+
+## 93. Debugging in VSCodium
+- Debugging is the process of finding and fixing errors in your code.
+- A breakpoint is a designated stopping point in the code. Execution will pause before the line is run.
+- [CodeLLDB](https://github.com/vadimcn/codelldb?tab=readme-ov-file) extension can be used for debugging in VSCodium.
+- [nvim-dap](https://github.com/mfussenegger/nvim-dap) plugin for neovim.
+- 
