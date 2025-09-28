@@ -36,7 +36,7 @@ cargo run --package <sample_prj> --bin <sample_prj>     # execute bin
 ```
 
 - generate executable
-```
+```bash
 rustc ./crate_00_hello_world/src/main.rs
 ./main
 ```
@@ -148,7 +148,7 @@ systems. Supports various symbols and emojis as well.
 - An array is a fixed size collection of a homogenous datatype.
 
 ## 62. Traits
-- A trait is a contract that requ:wqires that a type support one or more methods.
+- A trait is a contract that requires that a type support one or more methods.
 - Traits establish consistency between types.
     - Methods that represent the same behavior can have the same name across different types.
     - A type **implements** a trait.
@@ -184,8 +184,6 @@ systems. Supports various symbols and emojis as well.
 - By default a function will return a value in the last line which is called implicit return.
 - A unit is an empty tuple without values.
     - It's the default return type of an empty function.
-
-<!-- INFO: latex template done till this point -->
 
 ## 82. `if` Statement
 - Control flow refers to how a program will execute.
@@ -231,4 +229,143 @@ indefinately.
 - A breakpoint is a designated stopping point in the code. Execution will pause before the line is run.
 - [CodeLLDB](https://github.com/vadimcn/codelldb?tab=readme-ov-file) extension can be used for debugging in VSCodium.
 - [nvim-dap](https://github.com/mfussenegger/nvim-dap) plugin for neovim.
-- 
+
+
+## 100. Introduction to Ownership
+- Ownership is a set of rules that the compiler checks to ensure program is free from memory errors.
+- Memory is used to load and store data throughout the execution of a program.
+- Its ideal to free memory once the program has been executed.
+- Different languages manage memory in different ways.
+- Most languages have a built in garbage collector which itself consumes memory and is always running in the background.
+- C/C++ doesnt have automatic garbage collection. You allocate and deallocate memory manually.
+- Rust introduces a new paradigm: **ownership**.
+    - Set of rules on how rust manages your computer memory.
+    - Every value in a rust program has one owner.
+    - The owner can change over teh course of a program but there is only one owner at any given time.
+    - The owner is usually a name.
+        - A *variable* can be an owner.
+        - A *parameter* can be an owner.
+    - Ownership extends to composite types as well eg tuples, arrays.
+
+## 101. The Stack and Heap
+- Two different parts/regions of the computer's memory.
+- Both read and writable data in memory.
+- **Stack**: is faster but supports data of a fixed size.
+- **Heap**: is slower but supports data of a dynamic size.
+
+### Stack
+- Stores data in the order it receives values.
+- **LIFO**: Last In First Out.
+- You **push** values to and **pop** values from the stack respectively.
+- All values in the stack must have a fixed size that is known at compile time.
+
+### Heap
+- Stores data whose size is not known at compile time.
+- A memory allocator finds a spot that is large enough to store a certain value.
+- A memory allocator returns a **reference** which is an address. Also called a **pointer**.
+- Purpose of ownership is to assign resposibility for deallocating memory (primarily heap memory).
+- When values go out of scope owner deallocates memory of that value.
+
+## 103. The copy trait
+- All fixed sized data types implement the `copy` trait.
+
+## 104. The string type
+- Rust has 2 core string types.
+- The default `&str` is neither stored on stack nor heap but is embedded directly in the binary executable.
+    - This string is great when our string size is fixed.
+- The other type is `String` which is for dynamic and mutable strings.
+    - `String::new()` - here new is not a method but rather a function accessed via `::`.
+- Fixed string cant be mutated or concatenated.
+    - Only strings declared on the heap can do so.
+
+## 105. The `push_str` method
+- This snippet `let name: String = String::from("John");` creates an entry both on the stack and the heap.
+    - The heap holds the actual name "John".
+    - The stack holds 3 pieces of data.
+        1. Reference: address to the string.
+        2. Length: of the string e.g. 4 in this case.
+        3. Capacity: total space available on the heap for this string.
+    - If the original heap location doesnt have enough space to store the original data then its
+    moved to a new location on the heap and the previous space deallocated.
+
+## 106. Move and Ownership
+- A **move** is the transfer of ownership from one owner to another.
+    ```rust
+    let name1: String = String::from("John");
+    let name2: &str = &name1;
+    ```
+- A heap allocated string doesnt implement the copy trait.
+- Rust tends to reduce heap copies as often as possible because they tend to be more memory expensive.
+- In the above snippet when we assign `name1` to `name2`:
+    - Both reference to the same value on the heap.
+    - However `name2` is responsible for cleaning or deallocating it.
+    - We change the ownership of "John" when `name2` is assigned `name1`.
+        - `name1` becomes invalid. It goes out of scope.
+        - Cant use `name1` further down the code.
+- We cant have multiple strings owning the same value at any given time.
+- At the end rust only has to drop `name2` variable out of scope to clear the heap and free memory.
+- **Double free error**: When two references point to the same heap data. The program woudl try to
+remove `name1` and clear the heap but then when it would do the same for `name2` it would face
+problems because both point to the same place on the heap which was already cleared.
+- So this snippet would compile:
+    ```rust
+    let name1: String = String::from("John");
+    println!("name1: {}", name1);
+    let name2: String = name1;
+    println!("name2: {}", name2);
+    ```
+- But this would give the error: `error[E0382]: borrow of moved value: name1`.
+    ```rust
+    let name1: String = String::from("John");
+    let name2: String = name1;
+    println!("name1: {}", name1);
+    println!("name2: {}", name2);
+    ```
+
+## 107. The `drop` function
+- Rust automatically calls a `drop` function at the end of a scope.
+    - Deallocates memory on the heap.
+- This function doesnt work on the stack memory.
+- Can do this manually as well.
+
+## 108. The `clone` function
+- Force the copy of existing heap data and not move ownership we use `clone`.
+- After a clone there are two owners, for two separate distinct but equal pieces of data on the heap.
+
+## 109. References and Borrowing
+- Challenge comes when multiple parts of the code need to reuse a value for certain types.
+- We can create duplicates for lightweight things on the stack but for types on the heap it means
+creating duplicates using `clone`.
+- We can fix this using `reference`. It allows us the program to use the value without transferring
+the ownership.
+- **Borrowing**: the action of creating a reference. Using something without taking ownership.
+- `&`: borrow operator.
+- In the case of stack memory it simply creates copies of data since thats much more efficient.
+- References are mostly used for heap data.
+- The `i32` datatype is not the same as `&i32`. Same for other datatypes as well.
+- Depending upon the context a `reference` can be considered as a type of `pointer`.
+- A `reference` gurantees that its value is gonna be there. A `pointer` on the other hand doesnt
+give that gurantee.
+
+## 110. Dereferencing
+- You can dereference using the `*` operator.
+- To **dereference** means to access the data at the memory address that the reference points to.
+- Rust implements the display trait for references so we can dereference variables with and without `*`.
+- References implement the `copy` trail as well by default since they are of a fized size.
+
+## 113. Ownership and Function Parameters
+- Same rules of ownership apply to function parameters as well.
+- Whether or not a value is copied or move depends upon the type of value it is and how it
+implements the copy trait.
+- Stack data is copied. Ownership stays with the original variable.
+- Heap data is moved. Ownership is moved to the argument.
+- Function parameters are immutable by default.
+    - Inorder to update function parameters we need to make them mutable.
+
+## 115. Return Values
+- Normally if a function doesnt have a return value the value is deallocated when the function ends.
+- If a function is returning a value the ownership transfers from the invoked function back to the new
+variable value in the calling function.
+
+<!-- TODO: latex template done above this point -->
+
