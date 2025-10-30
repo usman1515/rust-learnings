@@ -87,10 +87,91 @@ rustc ./crate_00_hello_world/src/main.rs
 - For constants type must be inferred at all costs. Variables tyep are inferred at run time.
 
 ## 37. Type Aliases
-- Alternative name that can be assigned to an exsting type.
+- Alternative name that can be assigned to an existing type.
 
 ## 38. Compiler Directives
 - Annotation that tells the compiler how to parse the source code.
-- Write a directve above a line to apply it for that line.
-- Write a directve above a function to apply it for that function.
+- Write a directive above a line to apply it for that line.
+- Write a directive above a function to apply it for that function.
+
+## 43. Introduction to data types
+- A scalar type holds only 1 value.
+    - Rust has 4 scalar type.
+- Rust has signed and unsigned integers.
+- `i32` mean signed 32 bits.
+- `u32` mean unsigned 32 bits.
+- Can store 8, 16, 32, 64, 128 bits data in variables.
+- `i32` and `f64` are defaults data types for integers and floats.
+
+## 46. `usize` and `isize`
+- Use the type aliases `usize` and `isize` when declaring integers.
+- These types assign width to a variable based on the architecture it will run.
+- So on a 32 bit machine they will be 32 bit and 64 bit on a 64 bit machine.
+
+## 47. Strings and Raw Strings
+- Strings inside print function are "string literals".
+    - Their value is known at compile time.
+- Add a `\` before some special char to print it as is e.g. `\\n`.
+- In a raw strings every char is printed as is. Ideal for file paths.
+
+## 48. Methods
+- A function that lives on a value.
+    - Its an action we ask the value to execute.
+- A basic set of functions that can be run a variable.
+- Methods can also accept arguments.
+
+## 49. Floats
+- Default is `f64`.
+- `f64` has 15-17 digit precision.
+- `f32` has 5-7 digit precision.
+
+## 50. Float specifiers
+- A float specifier customizes the printed representation of the interpolated value.
+
+## 52. Math Operations
+- Rust does floor division on integers.
+    - When you divide 2 integers you will get a integer.
+
+## 54. Boolans
+- True or False. Takes 1 byte.
+
+## 59. The Char type
+-  Take 1 byte.
+- Unicode is a computing standard for the representation of textand most of the world's writing
+systems. Supports various symbols and emojis as well.
+- **UTF** - Unicode Transformation Formation.
+    - Has svereal variants.
+    - UTF-8, UTF-16, UTF-32
+- Char takes 4 bytes inorder to support all UTF characters.
+
+## 60. Arrays
+- An array is a fixed size collection of a homogenous datatype.
+
+## 62. Traits
+- A trait is a contract that requires that a type support one or more methods.
+- Traits establish consistency between types.
+    - Methods that represent the same behavior can have the same name across different types.
+    - A type **implements** a trait.
+    - A type can chhose to implement multiple traits.
+- **Display trait**.
+    - Built in.
+    - Using `{}` in strings.
+- Some types can't be displayed.
+- **Debug trait**
+    - Goal is to format a given type into a programmer-facing string for debugging purposes.
+    - `{:?}` or `{<some-variable-array>:?}` is the default debug trait.
+    - `{:#?}` or `{<some-variable-array>:#?}` is the pretty print debug trait.
+
+## 64. `dbg!` macro
+- Prints and returns the value of an expression for quick and easy debugging.
+- Basically the basic print statement on steroids for the developer.
+
+## 65. Tuples
+- Collection type.
+- Support values of different types.
+
+## 66. Ranges and Range Intervals
+- Ranges are exclusive by default.
+    - Goes up to max number but doesnt include it.
+
 

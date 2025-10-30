@@ -16,7 +16,24 @@ run_crate_01:
 	cargo run --bin variable_shadowing; \
 	cargo run --bin constants; \
 	cargo run --bin scopes; \
-	cargo run --bin type_aliases
+	cargo run --bin type_aliases; \
+	cargo run --bin project
+
+run_crate_02:
+	cd crate_02_data_types; \
+	cargo clean; \
+	cargo run --bin integers; \
+	cargo run --bin strings_and_raw_strings; \
+	cargo run --bin methods; \
+	cargo run --bin floats; \
+	cargo run --bin type_casting; \
+	cargo run --bin arithmetic_operations; \
+	cargo run --bin logical_operations; \
+	cargo run --bin char_and_arrays; \
+	cargo run --bin traits; \
+	cargo run --bin tuples; \
+	cargo run --bin ranges_and_iteration; \
+	cargo run --bin project
 
 # cargo check; \
 # cargo build --release; \
